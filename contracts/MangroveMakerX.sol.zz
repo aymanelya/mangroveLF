@@ -1,0 +1,219 @@
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
+
+import "hardhat/console.sol";
+
+
+import './interfaces/WBNB.sol';
+
+import './interfaces/IUniswapV2Factory.sol';
+import './interfaces/IUniswapV2Router02.sol';
+import './PancakeLibrary.sol';
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+
+
+
+
+import "src/IMangrove.sol";
+import {IERC20, IMaker, SingleOrder, OrderResult, MgvStructs} from "src/MgvLib.sol";
+
+contract MangroveMaker is Ownable {
+    using SafeMath for uint;
+
+    fallback() external payable {}
+
+    modifier ensure(uint256 deadline) {
+        require(deadline >= block.timestamp, "EXPIRED");
+        _;
+    }
+
+    function initContract(address mgv)
+
+
+
+        // an example of offer execution that simply verifies that `this` contract has enough outbound tokens to satisfy the taker Order.
+    function makerExecute(SingleOrder calldata order) 
+    external returns (bytes32 makerData){
+        // revert below (in case of insufficient funds) to signal mangrove we renege on trade
+        // reverting as soon as early to minimize bounty
+        require(
+           IERC20(order.outbound_tkn).balanceOf(address(this)) >= order.wants),
+           "MyOffer/NotEnoughFunds";
+        );
+        // do not perform any state changing call if caller is not Mangrove!
+        require(msg.sender == MGV, "MyOffer/OnlyMangroveCanCallMe");
+        // `order.gives` has been transfered by Mangrove to `this` balance
+        // sending incoming tokens to reserve
+        IERC20(order.inbound_tkn).transfer(reserve, order.gives);
+        // this string will be passed to `makerPosthook`
+        return "MyOffer/tradeSuccess";
+    }
+
+    // Example of post-hook
+    // if taker order was a success, try to repost residual offer at the same price
+    function makerPosthook
+        SingleOrder calldata order,
+        OrderResult calldata result
+    ) external {
+        require (msg.sender == MGV, "posthook/invalid_caller");
+        if (result.mgvData == "mgv/tradeSuccess") {
+            // retrieving offer data
+            // the following call to updateOffer will revert if:
+            // * `this` MakerContract doesn't have enough provision on Mangrove for the offer
+            // * the residual/(GASREQ+offer_gasbase) is below Mangrove's minimal density
+            // NB : a reverting posthook does not revert the offer execution
+            Mangrove(MGV).updateOffer(
+                order.outbound_tkn, // same offer List
+                order.inbound_tkn,
+                order.offer.wants() - order.gives, // what the offer wanted, minus what the taker order gave 
+                order.offer.gives() - order.wants, // what the offer was giving, minus what the taker took
+                order.offerDetail.gasreq(), // keeping with the same gasreq
+                order.offer.next(), // using next offer as pivot
+                order.offerId // reposting the offer that was consumed
+            );
+        }
+    }
+
+
+ function safeTransferFrom(address token,address from,address to,uint256 value) internal {
+        (bool success, bytes memory data) = token.call(abi.encodeWithSelector(0x23b872dd, from, to, value));
+        require(success && (data.length == 0 || abi.decode(data, (bool))),"TransferHelper: TRANSFER_FROM_FAILED");
+    }
+
+    function _swap(uint256[] memory amounts,address[] memory path,address[] memory pairPath,address _to) internal virtual {
+        for (uint256 i=0; i < pairPath.length; i++) {
+            (address input, address output) = (path[i], path[i + 1]);
+            (address token0, ) = PancakeLibrary.sortTokens(input, output);
+            uint256 amountOut = amounts[i + 1];
+            (uint256 amount0Out, uint256 amount1Out) = input == token0 ? (uint256(0), amountOut) : (amountOut, uint256(0));
+            address to = i < pairPath.length - 1 ? pairPath[i + 1] : _to;
+            IUniswapV2Pair(pairPath[i]).swap(
+                amount0Out,
+                amount1Out,
+                to,
+                new bytes(0)
+            );
+        }
+    }
+
+    function vSwap(
+        uint256 amountIn,
+        address[] memory path,
+        address[] memory pairPath,
+        uint256[] memory fee,
+        address to,
+        uint256 deadline
+    ) internal virtual ensure(deadline) returns (uint) {
+        uint256[] memory amounts = PancakeLibrary.getAmountsOut(amountIn,path,pairPath,fee);
+        safeTransferFrom(path[0], address(this), pairPath[0], amounts[0]);
+        _swap(amounts, path, pairPath, to);
+        return amounts[amounts.length - 1];
+    }
+
+    function jrebL3a9a(uint _amountIn,uint _additionalFees,address[] memory _path,address[] memory _pairPath,uint[] memory _swapFees) external payable returns (bool success){
+
+        
+
+
+        uint256[] memory amounts = PancakeLibrary.getAmountsOut(
+            _amountIn,
+            _path,
+            _pairPath,
+            _swapFees
+        );
+        success = true;
+        require(amounts[amounts.length - 1] > _amountIn + _additionalFees,"not profitable");
+        
+        if(msg.value>0){
+            WBNB(_path[0]).deposit{value:msg.value, gas:50000}();
+        }
+
+        
+        if(IERC20(_path[0]).balanceOf(address(this)) < _amountIn){
+            
+            // address pairAddress = IUniswapV2Factory(_loanFactory).getPair(_path[0], _path[1]);
+            address pairAddress = _pairPath[_pairPath.length-1];
+
+            address loanFactory = IUniswapV2Pair(pairAddress).factory();
+            require(loanFactory != address(0), 'This factory does not exist');
+
+            address token0 = IUniswapV2Pair(pairAddress).token0();
+            address token1 = IUniswapV2Pair(pairAddress).token1();
+
+            uint amount0Out = _path[_path.length-1] == token0 ? amounts[amounts.length-1] : 0;
+            uint amount1Out = _path[_path.length-1] == token1 ? amounts[amounts.length-1] : 0;
+            bytes memory data = abi.encode(_amountIn,_path,_pairPath,loanFactory,_swapFees);
+            IUniswapV2Pair(pairAddress).swap(amount0Out,amount1Out,address(this),data);
+        }else{
+            vSwap(_amountIn,_path,_pairPath,_swapFees,address(this),block.timestamp + 60);
+        }
+        return success;
+    }
+
+    function flashCallback(address _sender,uint _amount0,uint _amount1,bytes calldata _data) private {
+        console.log("Got flashloan");
+        (uint amountIn,address[] memory path,address[] memory pairPath,address flashFactory,uint[] memory swapFees) = abi.decode(_data, (uint, address[],address[],address,uint[]));
+
+        address token0 = IUniswapV2Pair(msg.sender).token0();
+        address token1 = IUniswapV2Pair(msg.sender).token1();
+        address pair = IUniswapV2Factory(flashFactory).getPair(token0, token1);
+        require(msg.sender == pair,"Sender not pair");
+        require(_sender == address(this),"Not sender");
+
+
+        address[] memory Mpath = new address[](path.length-1);
+        for (uint i=0; i<path.length-1; i++) {
+                    Mpath[i]=path[i];
+        }
+
+        address[] memory MpairPath = new address[](pairPath.length-1);
+        for (uint i=0; i<pairPath.length-1; i++) {
+                    MpairPath[i]=pairPath[i];
+        }        
+
+        uint[] memory MswapFees = new uint[](swapFees.length-1);
+        for (uint i=0; i<swapFees.length-1; i++) {
+                    MswapFees[i]=swapFees[i];
+        }
+
+        
+        vSwap(amountIn,Mpath,MpairPath,MswapFees,pair,block.timestamp + 60);
+    }
+
+
+    function pancakeCall(address _sender,uint _amount0,uint _amount1,bytes calldata _data) external {
+        flashCallback(_sender,_amount0,_amount1,_data);
+    }
+    function BiswapCall(address _sender,uint _amount0,uint _amount1,bytes calldata _data) external {
+        flashCallback(_sender,_amount0,_amount1,_data);
+    }
+    function babyCall(address _sender,uint _amount0,uint _amount1,bytes calldata _data) external {
+        flashCallback(_sender,_amount0,_amount1,_data);
+    }
+    function uniswapV2Call(address _sender,uint _amount0,uint _amount1,bytes calldata _data) external {
+        flashCallback(_sender,_amount0,_amount1,_data);
+    }
+
+    function deposit(address token) public payable{
+        if(msg.value>0){
+                WBNB(token).deposit{value:msg.value}();
+        }
+    }
+
+    function jbedL3a9a(uint _amount, address _token, bool isBNB) public onlyOwner{
+        if(_token == 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270){
+            if(!isBNB){
+                uint amount = _amount>0? _amount: IERC20(_token).balanceOf(address(this));
+                WBNB(_token).withdraw(amount);
+            }
+            _amount = _amount>0? _amount: address(this).balance;
+            payable(msg.sender).send(_amount);
+        }else{
+            _amount>0 ? IERC20(_token).transfer(msg.sender, _amount) : IERC20(_token).transfer(msg.sender, IERC20(_token).balanceOf(address(this)));
+        }
+
+    }
+}
