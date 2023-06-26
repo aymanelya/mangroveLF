@@ -1,0 +1,1803 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "build_infos": "out/build-info",
+    "sources": "contracts",
+    "tests": "test",
+    "scripts": "script",
+    "libraries": [
+      "lib",
+      "node_modules"
+    ]
+  },
+  "files": {
+    "contracts/MangroveMaker.sol": {
+      "lastModificationDate": 1687280463436,
+      "contentHash": "1699de44ecee3d053d34a94cc5bc7484",
+      "sourceName": "contracts/MangroveMaker.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/UniswapV2Library.sol",
+        "contracts/interfaces/IUniswapV2Factory.sol",
+        "contracts/interfaces/IUniswapV2Pair.sol",
+        "contracts/interfaces/IUniswapV2Router01.sol",
+        "contracts/interfaces/IUniswapV2Router02.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/MangroveOffer.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/ILiquidityProvider.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/offer_maker/abstract/Direct.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/TransferLib.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "node_modules/hardhat/console.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "MangroveMaker": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MangroveMaker.sol/MangroveMaker.json"
+        }
+      }
+    },
+    "contracts/UniswapV2Library.sol": {
+      "lastModificationDate": 1685450410074,
+      "contentHash": "efc2c3b266191ff71ccf2d8e8abee5ce",
+      "sourceName": "contracts/UniswapV2Library.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/interfaces/IUniswapV2Pair.sol",
+        "node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+        "node_modules/hardhat/console.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "UniswapV2Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "UniswapV2Library.sol/UniswapV2Library.json"
+        }
+      }
+    },
+    "contracts/interfaces/IUniswapV2Factory.sol": {
+      "lastModificationDate": 1684855420280,
+      "contentHash": "ca7a56d54e8c69b85edcd4b0b64a68ec",
+      "sourceName": "contracts/interfaces/IUniswapV2Factory.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "IUniswapV2Factory": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IUniswapV2Factory.sol/IUniswapV2Factory.json"
+        }
+      }
+    },
+    "contracts/interfaces/IUniswapV2Pair.sol": {
+      "lastModificationDate": 1684855420280,
+      "contentHash": "868805f0a286025e8249b8f6ed0b7310",
+      "sourceName": "contracts/interfaces/IUniswapV2Pair.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "IUniswapV2Pair": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IUniswapV2Pair.sol/IUniswapV2Pair.json"
+        }
+      }
+    },
+    "contracts/interfaces/IUniswapV2Router01.sol": {
+      "lastModificationDate": 1684855420280,
+      "contentHash": "215df360a464e0a7d5e7d57ecce58a48",
+      "sourceName": "contracts/interfaces/IUniswapV2Router01.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2",
+      "artifacts": {
+        "IUniswapV2Router01": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IUniswapV2Router01.sol/IUniswapV2Router01.json"
+        }
+      }
+    },
+    "contracts/interfaces/IUniswapV2Router02.sol": {
+      "lastModificationDate": 1684855420281,
+      "contentHash": "ad0b479a5ac15c1aa68bd601c5fdc5cd",
+      "sourceName": "contracts/interfaces/IUniswapV2Router02.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/interfaces/IUniswapV2Router01.sol"
+      ],
+      "versionRequirement": ">=0.6.2",
+      "artifacts": {
+        "IUniswapV2Router02": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IUniswapV2Router02.sol/IUniswapV2Router02.json"
+        }
+      }
+    },
+    "contracts/interfaces/WMATIC.sol": {
+      "lastModificationDate": 1685016427656,
+      "contentHash": "9611b3d69d38d6272650311426d57b8f",
+      "sourceName": "contracts/interfaces/WMATIC.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "WMATIC": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "WMATIC.sol/WMATIC.json"
+        }
+      }
+    },
+    "contracts/mgv_src/IERC20.sol": {
+      "lastModificationDate": 1685505985628,
+      "contentHash": "11945efaf07bbe78d36180c69e5f78ba",
+      "sourceName": "contracts/mgv_src/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2",
+      "artifacts": {
+        "IERC20": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IERC20.sol/IERC20.json"
+        }
+      }
+    },
+    "contracts/mgv_src/IMangrove.sol": {
+      "lastModificationDate": 1685506278434,
+      "contentHash": "c88b07999f2241b4fd7081b75e37d08b",
+      "sourceName": "contracts/mgv_src/IMangrove.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IMangrove": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IMangrove.sol/IMangrove.json"
+        }
+      }
+    },
+    "contracts/mgv_src/MgvLib.sol": {
+      "lastModificationDate": 1686317336757,
+      "contentHash": "5d0c74c834ee8d09ee4e0659890f071e",
+      "sourceName": "contracts/mgv_src/MgvLib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "HasMgvEvents": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLib.sol/HasMgvEvents.json"
+        },
+        "IMaker": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLib.sol/IMaker.json"
+        },
+        "IMgvMonitor": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLib.sol/IMgvMonitor.json"
+        },
+        "ITaker": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLib.sol/ITaker.json"
+        },
+        "MgvLib": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLib.sol/MgvLib.json"
+        }
+      }
+    },
+    "contracts/mgv_src/preprocessed/MgvGlobal.post.sol": {
+      "lastModificationDate": 1685498646000,
+      "contentHash": "915ece4bf788cd071662996e1840c950",
+      "sourceName": "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvGlobal.post.sol/Library.json"
+        }
+      }
+    },
+    "contracts/mgv_src/preprocessed/MgvLocal.post.sol": {
+      "lastModificationDate": 1685498646000,
+      "contentHash": "5c8479edb7be8d3b6d2952815de6d683",
+      "sourceName": "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvLocal.post.sol/Library.json"
+        }
+      }
+    },
+    "contracts/mgv_src/preprocessed/MgvOffer.post.sol": {
+      "lastModificationDate": 1685498646000,
+      "contentHash": "f07da76d06ad58a89870677e838216b1",
+      "sourceName": "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvOffer.post.sol/Library.json"
+        }
+      }
+    },
+    "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol": {
+      "lastModificationDate": 1685498646000,
+      "contentHash": "1ac518643c91ce8ba829458cbb959b0d",
+      "sourceName": "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvOfferDetail.post.sol/Library.json"
+        }
+      }
+    },
+    "contracts/mgv_src/preprocessed/MgvStructs.post.sol": {
+      "lastModificationDate": 1685498646000,
+      "contentHash": "6f65debf8045c852047adc32e05a5a3e",
+      "sourceName": "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol"
+      ],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "MgvStructs.post": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvStructs.post.sol/MgvStructs.post.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/MangroveOffer.sol": {
+      "lastModificationDate": 1686759503628,
+      "contentHash": "5705670f240ae06f0512c1726c3d6ccf",
+      "sourceName": "contracts/mgv_src/strategies/MangroveOffer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/IMangrove.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+        "contracts/mgv_src/strategies/interfaces/IOfferLogic.sol",
+        "contracts/mgv_src/strategies/routers/AbstractRouter.sol",
+        "contracts/mgv_src/strategies/utils/AccessControlled.sol",
+        "contracts/mgv_src/strategies/utils/TransferLib.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "MangroveOffer": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MangroveOffer.sol/MangroveOffer.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/interfaces/ILiquidityProvider.sol": {
+      "lastModificationDate": 1685506607696,
+      "contentHash": "c6afba7463200c1dcf76fc62d80c7093",
+      "sourceName": "contracts/mgv_src/strategies/interfaces/ILiquidityProvider.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/IMangrove.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+        "contracts/mgv_src/strategies/interfaces/IOfferLogic.sol",
+        "contracts/mgv_src/strategies/routers/AbstractRouter.sol",
+        "contracts/mgv_src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": ">=0.8.10",
+      "artifacts": {
+        "ILiquidityProvider": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "ILiquidityProvider.sol/ILiquidityProvider.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/interfaces/IOfferLogic.sol": {
+      "lastModificationDate": 1685506602549,
+      "contentHash": "c1ec24e971a83b7924a7c72044c30c0a",
+      "sourceName": "contracts/mgv_src/strategies/interfaces/IOfferLogic.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/IMangrove.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+        "contracts/mgv_src/strategies/routers/AbstractRouter.sol",
+        "contracts/mgv_src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": ">=0.8.10",
+      "artifacts": {
+        "IOfferLogic": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "IOfferLogic.sol/IOfferLogic.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/offer_maker/abstract/Direct.sol": {
+      "lastModificationDate": 1685507049040,
+      "contentHash": "5da7af4de487b2193632ae1fd9c53daf",
+      "sourceName": "contracts/mgv_src/strategies/offer_maker/abstract/Direct.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/IMangrove.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+        "contracts/mgv_src/strategies/MangroveOffer.sol",
+        "contracts/mgv_src/strategies/interfaces/IOfferLogic.sol",
+        "contracts/mgv_src/strategies/routers/AbstractRouter.sol",
+        "contracts/mgv_src/strategies/utils/AccessControlled.sol",
+        "contracts/mgv_src/strategies/utils/TransferLib.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "Direct": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "Direct.sol/Direct.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/routers/AbstractRouter.sol": {
+      "lastModificationDate": 1685506594232,
+      "contentHash": "4bb28aab3936f6cfc917a38ae549ddf0",
+      "sourceName": "contracts/mgv_src/strategies/routers/AbstractRouter.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol",
+        "contracts/mgv_src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "AbstractRouter": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "AbstractRouter.sol/AbstractRouter.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/utils/AccessControlled.sol": {
+      "lastModificationDate": 1685506581468,
+      "contentHash": "294390ed357f62823873529ca58d53d0",
+      "sourceName": "contracts/mgv_src/strategies/utils/AccessControlled.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "AccessControlled": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "AccessControlled.sol/AccessControlled.json"
+        }
+      }
+    },
+    "contracts/mgv_src/strategies/utils/TransferLib.sol": {
+      "lastModificationDate": 1685506959111,
+      "contentHash": "c5480ce72236d674c5c9b073cb111076",
+      "sourceName": "contracts/mgv_src/strategies/utils/TransferLib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts/mgv_src/IERC20.sol",
+        "contracts/mgv_src/MgvLib.sol",
+        "contracts/mgv_src/preprocessed/MgvGlobal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvLocal.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOffer.post.sol",
+        "contracts/mgv_src/preprocessed/MgvOfferDetail.post.sol",
+        "contracts/mgv_src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "TransferLib": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "TransferLib.sol/TransferLib.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol": {
+      "lastModificationDate": 1686821098528,
+      "contentHash": "11945efaf07bbe78d36180c69e5f78ba",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.2",
+      "artifacts": {
+        "IERC20": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/IERC20.sol/IERC20.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol": {
+      "lastModificationDate": 1686821098528,
+      "contentHash": "c88b07999f2241b4fd7081b75e37d08b",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": ">=0.7.0, <0.9.0",
+      "artifacts": {
+        "IMangrove": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/IMangrove.sol/IMangrove.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol": {
+      "lastModificationDate": 1686821098529,
+      "contentHash": "5d0c74c834ee8d09ee4e0659890f071e",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "HasMgvEvents": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/MgvLib.sol/HasMgvEvents.json"
+        },
+        "IMaker": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/MgvLib.sol/IMaker.json"
+        },
+        "IMgvMonitor": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/MgvLib.sol/IMgvMonitor.json"
+        },
+        "ITaker": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/MgvLib.sol/ITaker.json"
+        },
+        "MgvLib": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "src/MgvLib.sol/MgvLib.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol": {
+      "lastModificationDate": 1686821098531,
+      "contentHash": "915ece4bf788cd071662996e1840c950",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "preprocessed/MgvGlobal.post.sol/Library.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol": {
+      "lastModificationDate": 1686821098531,
+      "contentHash": "5c8479edb7be8d3b6d2952815de6d683",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "preprocessed/MgvLocal.post.sol/Library.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol": {
+      "lastModificationDate": 1686821098532,
+      "contentHash": "f07da76d06ad58a89870677e838216b1",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "preprocessed/MgvOffer.post.sol/Library.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol": {
+      "lastModificationDate": 1686821098532,
+      "contentHash": "1ac518643c91ce8ba829458cbb959b0d",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "Library": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "preprocessed/MgvOfferDetail.post.sol/Library.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol": {
+      "lastModificationDate": 1686821098532,
+      "contentHash": "6f65debf8045c852047adc32e05a5a3e",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol"
+      ],
+      "versionRequirement": "^0.8.13",
+      "artifacts": {
+        "MgvStructs.post": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "MgvStructs.post.sol/MgvStructs.post.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/MangroveOffer.sol": {
+      "lastModificationDate": 1687280490416,
+      "contentHash": "ba4db15c1b35cdc747206c90820fb6df",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/MangroveOffer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/TransferLib.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "MangroveOffer": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "strategies/MangroveOffer.sol/MangroveOffer.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/ILiquidityProvider.sol": {
+      "lastModificationDate": 1686821098535,
+      "contentHash": "aab36f4aae0e1dba067a28b254f6c20f",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/ILiquidityProvider.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": ">=0.8.10",
+      "artifacts": {
+        "ILiquidityProvider": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "interfaces/ILiquidityProvider.sol/ILiquidityProvider.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol": {
+      "lastModificationDate": 1686821098536,
+      "contentHash": "2e810d47f6662ec20d1e99919bf2b6b4",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": ">=0.8.10",
+      "artifacts": {
+        "IOfferLogic": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "interfaces/IOfferLogic.sol/IOfferLogic.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/offer_maker/abstract/Direct.sol": {
+      "lastModificationDate": 1686821098539,
+      "contentHash": "8f5749aed1610bc710e3707ca4cdd107",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/offer_maker/abstract/Direct.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/IMangrove.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/MangroveOffer.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/interfaces/IOfferLogic.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/TransferLib.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "Direct": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "abstract/Direct.sol/Direct.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol": {
+      "lastModificationDate": 1686821098544,
+      "contentHash": "10edf8c93861f5adac027f21ad44d379",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/routers/AbstractRouter.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "AbstractRouter": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "routers/AbstractRouter.sol/AbstractRouter.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol": {
+      "lastModificationDate": 1686821098546,
+      "contentHash": "294390ed357f62823873529ca58d53d0",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/AccessControlled.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "AccessControlled": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "utils/AccessControlled.sol/AccessControlled.json"
+        }
+      }
+    },
+    "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/TransferLib.sol": {
+      "lastModificationDate": 1686821098546,
+      "contentHash": "d480c24ec545c8c2fbf4914f0e8759c9",
+      "sourceName": "node_modules/@mangrovedao/mangrove-core/src/strategies/utils/TransferLib.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@mangrovedao/mangrove-core/src/IERC20.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/MgvLib.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol"
+      ],
+      "versionRequirement": "^0.8.10",
+      "artifacts": {
+        "TransferLib": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "utils/TransferLib.sol/TransferLib.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol": {
+      "lastModificationDate": 1685010657659,
+      "contentHash": "a6a9d6c1f662e922b82c1ba4d81cdd48",
+      "sourceName": "node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "SafeMath": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "SafeMath.sol/SafeMath.json"
+        }
+      }
+    },
+    "node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1687275052241,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "node_modules/hardhat/console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": null,
+      "artifacts": {
+        "console": {
+          "0.8.20+commit.a1b79de6.Darwin.appleclang": "console.sol/console.json"
+        }
+      }
+    }
+  }
+}

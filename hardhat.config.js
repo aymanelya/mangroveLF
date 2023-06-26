@@ -1,4 +1,5 @@
 require('@nomiclabs/hardhat-waffle');
+require('@nomicfoundation/hardhat-foundry');
 
 const fs = require('fs');
 const pk = fs.readFileSync('.secret').toString().trim();
@@ -22,17 +23,12 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
 module.exports = {
   solidity: '0.8.13',
   settings: {
-    remappings: [
-      'mgv_src/=node_modules/@mangrovedao/mangrove-core/src/',
-      'mgv_lib/=node_modules/@mangrovedao/mangrove-core/lib/',
-      'mgv_test/=node_modules/@mangrovedao/mangrove-core/test/',
-      'mgv_script/=node_modules/@mangrovedao/mangrove-core/script/'
-    ],
     optimizer: {
       enabled: true,
-      runs: 200,
+      runs: 1000,
     },
   },
+
   mocha: {
     timeout: 400000,
   },

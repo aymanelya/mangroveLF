@@ -1,0 +1,275 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvStructs.post.sol",
+    "id": 12410,
+    "exportedSymbols": {
+      "Global": [
+        12405
+      ],
+      "GlobalPacked": [
+        9392
+      ],
+      "GlobalUnpacked": [
+        9390
+      ],
+      "Local": [
+        12409
+      ],
+      "LocalPacked": [
+        10284
+      ],
+      "LocalUnpacked": [
+        10282
+      ],
+      "Offer": [
+        12397
+      ],
+      "OfferDetail": [
+        12401
+      ],
+      "OfferDetailPacked": [
+        11813
+      ],
+      "OfferDetailUnpacked": [
+        11811
+      ],
+      "OfferPacked": [
+        11243
+      ],
+      "OfferUnpacked": [
+        11241
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "0:868:29",
+    "nodes": [
+      {
+        "id": 12393,
+        "nodeType": "PragmaDirective",
+        "src": "0:24:29",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".13"
+        ]
+      },
+      {
+        "id": 12396,
+        "nodeType": "ImportDirective",
+        "src": "422:63:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "file": "./MgvOffer.post.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 12410,
+        "sourceUnit": 11792,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12394,
+              "name": "OfferPacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 11243,
+              "src": "430:11:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 12395,
+              "name": "OfferUnpacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 11241,
+              "src": "443:13:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 12397,
+        "nodeType": "ImportDirective",
+        "src": "486:38:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOffer.post.sol",
+        "file": "./MgvOffer.post.sol",
+        "nameLocation": "518:5:29",
+        "scope": 12410,
+        "sourceUnit": 11792,
+        "symbolAliases": [],
+        "unitAlias": "Offer"
+      },
+      {
+        "id": 12400,
+        "nodeType": "ImportDirective",
+        "src": "525:81:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "file": "./MgvOfferDetail.post.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 12410,
+        "sourceUnit": 12392,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12398,
+              "name": "OfferDetailPacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 11813,
+              "src": "533:17:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 12399,
+              "name": "OfferDetailUnpacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 11811,
+              "src": "552:19:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 12401,
+        "nodeType": "ImportDirective",
+        "src": "607:50:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvOfferDetail.post.sol",
+        "file": "./MgvOfferDetail.post.sol",
+        "nameLocation": "645:11:29",
+        "scope": 12410,
+        "sourceUnit": 12392,
+        "symbolAliases": [],
+        "unitAlias": "OfferDetail"
+      },
+      {
+        "id": 12404,
+        "nodeType": "ImportDirective",
+        "src": "658:66:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "file": "./MgvGlobal.post.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 12410,
+        "sourceUnit": 10257,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12402,
+              "name": "GlobalPacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 9392,
+              "src": "666:12:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 12403,
+              "name": "GlobalUnpacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 9390,
+              "src": "680:14:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 12405,
+        "nodeType": "ImportDirective",
+        "src": "725:40:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvGlobal.post.sol",
+        "file": "./MgvGlobal.post.sol",
+        "nameLocation": "758:6:29",
+        "scope": 12410,
+        "sourceUnit": 10257,
+        "symbolAliases": [],
+        "unitAlias": "Global"
+      },
+      {
+        "id": 12408,
+        "nodeType": "ImportDirective",
+        "src": "766:63:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "file": "./MgvLocal.post.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 12410,
+        "sourceUnit": 11222,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 12406,
+              "name": "LocalPacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 10284,
+              "src": "774:11:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          },
+          {
+            "foreign": {
+              "id": 12407,
+              "name": "LocalUnpacked",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 10282,
+              "src": "787:13:29",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 12409,
+        "nodeType": "ImportDirective",
+        "src": "830:38:29",
+        "nodes": [],
+        "absolutePath": "node_modules/@mangrovedao/mangrove-core/src/preprocessed/MgvLocal.post.sol",
+        "file": "./MgvLocal.post.sol",
+        "nameLocation": "862:5:29",
+        "scope": 12410,
+        "sourceUnit": 11222,
+        "symbolAliases": [],
+        "unitAlias": "Local"
+      }
+    ],
+    "license": "Unlicense"
+  },
+  "id": 29
+}

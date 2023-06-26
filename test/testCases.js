@@ -1,11 +1,17 @@
 const { expect } = require('chai');
 const { Mangrove } = require('@mangrovedao/mangrove.js');
 
+const orderABI = require('./mangroveOrderABI.json');
+// const BigNumber = require('bignumber.js');
+
 const takerAccount = {
   address: '0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199',
   privateKey:
     '0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e',
 };
+let MGRV = '0xd1805f6Fe12aFF69D4264aE3e49ef320895e2D8b';
+
+let globalPairs = [];
 
 function hex_to_ascii(str1) {
   var hex = str1.toString();
@@ -15,8 +21,6 @@ function hex_to_ascii(str1) {
   }
   return str;
 }
-
-
 
 let deployerAddress;
 
@@ -29,30 +33,32 @@ describe('MangroveMaker', function () {
     const MangroveMaker = await ethers.getContractFactory('MangroveMaker');
 
     const signers = await ethers.getSigners();
-    const deployer = signers[0];
-    deployerAddress = deployer.address
+    const deployer = signers[1];
+    deployerAddress = deployer.address;
     console.log('Deployer address:', deployer.address);
 
     // Fetch current gas price from the network
     const gasPrice = await ethers.provider.getGasPrice();
     console.log(`Current gas price: ${gasPrice.toString()}`);
 
-    // {
-    //   "address": "0x193163EeFfc795F9d573b171aB12cCDdE10392e8",
-    //   "name": "WMATIC"
-    // },
-    // {
-    //   "address": "0xf402f6197d979F0A4cba61596921a3d762520570",
-    //   "name": "WBTC"
-    // },
-    // {
-    //   "address": "0xe8099699aa4A79d89dBD20A63C50b7d35ED3CD9e",
-    //   "name": "USDT"
-    // }
+    // [
+    //   {
+    //     address: '0x193163EeFfc795F9d573b171aB12cCDdE10392e8',
+    //     name: 'WMATIC',
+    //   },
+    //   {
+    //     address: '0xf402f6197d979F0A4cba61596921a3d762520570',
+    //     name: 'WBTC',
+    //   },
+    //   {
+    //     address: '0xe8099699aa4A79d89dBD20A63C50b7d35ED3CD9e',
+    //     name: 'USDT',
+    //   },
+    // ];
 
     // Example values for testing
     let MGRV = '0xd1805f6Fe12aFF69D4264aE3e49ef320895e2D8b';
-    let initialSpreads = [100];
+    let initialSpreads = [2];
     let initialVolumes = [200e6]; //in USDT
     let initialTenacities = [10];
     let initialPairs = [
@@ -63,7 +69,7 @@ describe('MangroveMaker', function () {
     ];
     let initialOtherDexFactory = '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32';
     let initialOtherDexRouter = '0x8954AfA98594b838bda56FE4C12a09D7739D179b';
-    let initialOtherDexFees = 30;
+    // let initialOtherDexFees = 30;
 
     const transaction = await MangroveMaker.getDeployTransaction(
       MGRV,
@@ -73,7 +79,7 @@ describe('MangroveMaker', function () {
       initialPairs,
       initialOtherDexFactory,
       initialOtherDexRouter,
-      initialOtherDexFees,
+      // initialOtherDexFees,
       deployer.address
     );
     // const gasLimit = transaction.gasLimit;
@@ -89,7 +95,7 @@ describe('MangroveMaker', function () {
       initialPairs,
       initialOtherDexFactory,
       initialOtherDexRouter,
-      initialOtherDexFees,
+      // initialOtherDexFees,
       deployer.address
     );
 
@@ -102,7 +108,7 @@ describe('MangroveMaker', function () {
 
   it('Should update the data correctly', async function () {
     // Example update values
-    let newSpreads = [200];
+    let newSpreads = [2];
     let newVolumes = [200e6]; //in USDT
     let newTenacities = [20];
     let newPairs = [
@@ -113,7 +119,7 @@ describe('MangroveMaker', function () {
     ];
     let newOtherDexFactory = '0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32';
     let newOtherDexRouter = '0x8954AfA98594b838bda56FE4C12a09D7739D179b';
-    let newOtherDexFees = 30;
+    // let newOtherDexFees = 30;
     // let newOtherDexRouter = "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff";
 
     const tx = await contract.updateParams(
@@ -122,13 +128,14 @@ describe('MangroveMaker', function () {
       newTenacities,
       newPairs,
       newOtherDexFactory,
-      newOtherDexRouter,
-      newOtherDexFees
+      newOtherDexRouter
+      // newOtherDexFees
     );
     // const receipt = await tx.wait();
     // const logs = receipt.events;
     // console.log(logs);
 
+    globalPairs = newPairs;
 
     const pairs = await contract.getTrackedPairs();
     for (let i = 0; i < newPairs.length; i++) {
@@ -138,7 +145,7 @@ describe('MangroveMaker', function () {
   });
   it('Should create initial offers correctly and snipe them and withdraw', async function () {
     const res = await contract.createInitialOffers({
-      value: ethers.utils.parseEther('0.3'),
+      value: ethers.utils.parseEther('0.6'),
     });
 
     const takerWallet = new ethers.Wallet(
@@ -150,39 +157,94 @@ describe('MangroveMaker', function () {
 
     // Connect mgv to a DAI, USDC market
     const market = await mgv.market({ base: 'WMATIC', quote: 'USDT' });
-
-    console.log("MATIC")
-    console.log("deployer",ethers.utils.formatEther(await (ethers.provider.getBalance(deployerAddress))))
-    console.log("contract",ethers.utils.formatEther(await (ethers.provider.getBalance(contract.address))))
-    console.log("taker",ethers.utils.formatEther(await (ethers.provider.getBalance(takerWallet.address))))
-    console.log("WMATIC")
-    console.log("deployer",await market.base.balanceOf(deployerAddress))
-    console.log("contract",await market.base.balanceOf(contract.address))
-    console.log("taker",await market.base.balanceOf(takerWallet.address))
-    console.log("USDT")
-    console.log("deployer",await market.quote.balanceOf(deployerAddress))
-    console.log("contract",await market.quote.balanceOf(contract.address))
-    console.log("taker",await market.quote.balanceOf(takerWallet.address))
+    console.log('***** BALANCES BEFORE MINTS ******');
+    console.log('MATIC');
+    console.log(
+      'deployer',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(deployerAddress)
+      )
+    );
+    console.log(
+      'contract',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(contract.address)
+      )
+    );
+    console.log(
+      'taker',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(takerWallet.address)
+      )
+    );
+    console.log('WMATIC');
+    console.log('deployer', await market.base.balanceOf(deployerAddress));
+    console.log('contract', await market.base.balanceOf(contract.address));
+    console.log('taker', await market.base.balanceOf(takerWallet.address));
+    console.log('USDT');
+    console.log('deployer', await market.quote.balanceOf(deployerAddress));
+    console.log('contract', await market.quote.balanceOf(contract.address));
+    console.log('taker', await market.quote.balanceOf(takerWallet.address));
 
     // Mint enough tokens for the taker's wallet
     await market.quote.contract.mintTo(
       // minting USDT if you are on testnet
-      takerAccount.address,
-      parseInt(1000 * 10 ** market.quote.decimals)
+      takerWallet.address,
+      ethers.utils.parseUnits('1000', market.quote.decimals)
     );
 
+    await market.base.contract.mintTo(
+      // minting WMATIC if you are on testnet
+      takerWallet.address,
+      ethers.utils.parseUnits('1000', market.base.decimals)
+    );
+    console.log('***** BALANCES AFTER MINTS ******');
+    console.log('MATIC');
+    console.log(
+      'deployer',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(deployerAddress)
+      )
+    );
+    console.log(
+      'contract',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(contract.address)
+      )
+    );
+    console.log(
+      'taker',
+      ethers.utils.formatEther(
+        await ethers.provider.getBalance(takerWallet.address)
+      )
+    );
+    console.log('WMATIC');
+    console.log('deployer', await market.base.balanceOf(deployerAddress));
+    console.log('contract', await market.base.balanceOf(contract.address));
+    console.log('taker', await market.base.balanceOf(takerWallet.address));
+    console.log('USDT');
+    console.log('deployer', await market.quote.balanceOf(deployerAddress));
+    console.log('contract', await market.quote.balanceOf(contract.address));
+    console.log('taker', await market.quote.balanceOf(takerWallet.address));
+
     const offerLists = await contract.getOfferLists();
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < globalPairs.length; i++) {
       for (let j = 0; j < offerLists[i].length; j++) {
+        let isAsk;
         const offerId = parseInt(offerLists[i][j]);
         console.log(offerId);
         // // Get all the info about the offer
         let offer = await market.getSemibook('asks').offerInfo(offerId);
-
+        isAsk = offer.price ? true : false;
+        if (!isAsk) {
+          offer = await market.getSemibook('bids').offerInfo(offerId);
+        }
         // // Log offer to see what data in holds
         console.log(offer);
+        // continue;
         // // Approve Mangrove to take USDC from your account
         await mgv.approveMangrove('USDT');
+        await mgv.approveMangrove('WMATIC');
 
         // // Snipe the offer using the information about the offer.
         let snipePromises = await market.snipe({
@@ -194,49 +256,64 @@ describe('MangroveMaker', function () {
               gasLimit: offer.gasreq, // not mandatory
             },
           ],
-          ba: 'asks',
+          ba: isAsk ? 'asks' : 'bids',
         });
         let result = await snipePromises.result;
 
-        // // Log the result of snipe
-        if (result.hasOwnProperty('tradeFailures')) {
-          for (let i = 0; i < result.tradeFailures.length; i++) {
-            result.tradeFailures[i].reason = hex_to_ascii(
-              result.tradeFailures[i].reason
-            );
-          }
-        }
+        // Log the result of snipe
+
         console.log(result);
-        if(result.successes.length==0){  
-          try{
 
-            const targetTopics = [
-              '0x84caca153d4896fd9d59ff942e5b76657222a696bf5b2acc0257867e05ef3281',
-            ];
-    
-            const log = result.txReceipt.logs.filter((item) => {
-              return item.topics[0] === targetTopics[0];
-            });
-            const reason = hex_to_ascii(log[0].data);
-            console.log(reason);
-          }catch{
-            console.log(result.txReceipt.logs)
-            
+        const MGRV_CONTRACT = new ethers.Contract(
+          MGRV,
+          orderABI,
+          ethers.provider
+        );
+
+        for (let log of result.txReceipt.logs) {
+          try {
+            let parsedLog = MGRV_CONTRACT.interface.parseLog(log);
+            if (parsedLog.name == 'PosthookFail') {
+              console.log(parsedLog);
+              console.log(
+                `********** DECODED POSTHOOKFAIL ***********\n${ethers.utils.parseBytes32String(
+                  parsedLog.args[parsedLog.args.length - 1]
+                )}\n*********************************`
+              );
+            }
+          } catch (error) {
+            // console.log('Failed to parse log: ', error.toString());
           }
         }
-        console.log("MATIC")
-        console.log("deployer",ethers.utils.formatEther(await (ethers.provider.getBalance(deployerAddress))))
-        console.log("contract",ethers.utils.formatEther(await (ethers.provider.getBalance(contract.address))))
-        console.log("taker",ethers.utils.formatEther(await (ethers.provider.getBalance(takerWallet.address))))
-        console.log("WMATIC")
-        console.log("deployer",await market.base.balanceOf(deployerAddress))
-        console.log("contract",await market.base.balanceOf(contract.address))
-        console.log("taker",await market.base.balanceOf(takerWallet.address))
-        console.log("USDT")
-        console.log("deployer",await market.quote.balanceOf(deployerAddress))
-        console.log("contract",await market.quote.balanceOf(contract.address))
-        console.log("taker",await market.quote.balanceOf(takerWallet.address))
 
+        cconsole.log('***** BALANCES AFTER SNIPES ******');
+        console.log('MATIC');
+        console.log(
+          'deployer',
+          ethers.utils.formatEther(
+            await ethers.provider.getBalance(deployerAddress)
+          )
+        );
+        console.log(
+          'contract',
+          ethers.utils.formatEther(
+            await ethers.provider.getBalance(contract.address)
+          )
+        );
+        console.log(
+          'taker',
+          ethers.utils.formatEther(
+            await ethers.provider.getBalance(takerWallet.address)
+          )
+        );
+        console.log('WMATIC');
+        console.log('deployer', await market.base.balanceOf(deployerAddress));
+        console.log('contract', await market.base.balanceOf(contract.address));
+        console.log('taker', await market.base.balanceOf(takerWallet.address));
+        console.log('USDT');
+        console.log('deployer', await market.quote.balanceOf(deployerAddress));
+        console.log('contract', await market.quote.balanceOf(contract.address));
+        console.log('taker', await market.quote.balanceOf(takerWallet.address));
 
         // await contract.withdraw(
         //   0,
@@ -290,8 +367,6 @@ describe('MangroveMaker', function () {
         // console.log("deployer",await market.quote.balanceOf(deployerAddress))
         // console.log("contract",await market.quote.balanceOf(contract.address))
         // console.log("taker",await market.quote.balanceOf(takerWallet.address))
-
-
       }
     }
   });
